@@ -8,9 +8,9 @@ function Person({
     mainCurrencyTotal, 
     paidCurrency, 
     paidCurrencyTotal, 
-    onDrop, 
     onNameChange, 
     onPayerChange, 
+    onDrop, 
     children 
 }) {
     return (

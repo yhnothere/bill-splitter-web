@@ -1,17 +1,23 @@
 import Person from "./PersonComponent";
+import Assigned from "./AssignedComponent";
 
 function NameList({
     nameList,
     itemList,
-    costCalculation,
-    costConversion,
-    discount,
     payer,
     mainCurrency,
     paidCurrency,
-    onDrop,
+    discount,
+    costCalculation,
+    costConversion,
     onNameChange,
-    onPayerChange
+    onPayerChange,
+    onDragStart,
+    onDragEnd,
+    onItemDrop,
+    onDiscountDrop,
+    onItemRemove,
+    onDiscountRemove
 }) {
     if (!nameList.length) return null;
     return (
@@ -25,7 +31,7 @@ function NameList({
         const paidCurrencyTotal = assignedTotal + splitTotal;
         const mainCurrencyTotal = costConversion(paidCurrencyTotal, paidCurrency, mainCurrency);
         return (
-          <PersonCard
+          <Person
             key={i}
             index={i}
             name={name}
@@ -36,12 +42,23 @@ function NameList({
             mainCurrencyTotal={mainCurrencyTotal}
             paidCurrency={paidCurrency}
             paidCurrencyTotal={paidCurrencyTotal}
-            onDrop={onDrop}
+            onDrop={onItemDrop}
             onNameChange={onNameChange}
             onPayerChange={onPayerChange}
           >
-            {/* Assigned items UI stays in App for now */}
-          </PersonCard>
+            <Assigned
+              assignedItems={assignedItems}
+              splitTotal={splitTotal}
+              costCalculation={costCalculation}
+              paidCurrency={paidCurrency}
+              discount={discount}
+              onDragStart={onDragStart}
+              onDragEnd={onDragEnd}
+              onDiscountDrop={onDiscountDrop}
+              onRemoveItem={onItemRemove}
+              onRemoveDiscount={onDiscountRemove}
+            />
+          </Person>
         );
       })}
     </div>

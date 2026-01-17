@@ -1,4 +1,12 @@
-function BillInfo({ showField, title, paxCount, onCreate, onTitleChange, onPaxChange, children }) {
+function BillInfo({ 
+    showField, 
+    title, 
+    paxCount, 
+    onCreate, 
+    onTitleChange, 
+    onPaxChange, 
+    children 
+}) {
     if (!showField) {
         return (
             <button 
